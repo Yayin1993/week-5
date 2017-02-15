@@ -64,7 +64,7 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 
       For example:
         Reading: $(someSelector).val();  // This gets the current value
-        Writing: $(someSelector).val(valueToSet);  // This sets the value
+        Writing: c;  // This sets the value
 
     jQuery().text();
       With no arguments, `val` queries an html element for its contained text (not usable to get an
@@ -168,6 +168,42 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // This is a popular pattern that you'll run into in programs that run jQuery. It says not to run
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
+
+
 $(document).ready(function() {
-  // Do your stuff here
+  $('#text-label1').text('Neighborhood');// Do your stuff here
+  $('#text-label2').text('Name');// Do your stuff here
+  $('#text-label3').text('Address');// Do your stuff here
+  $('#number-label').text('Zipcode');// Do your stuff here
+  $('#checkbox-label1').text('Is it in University City?');// Do your stuff here
+  $('#checkbox-label2').text('Is it between zipcode 19103 and 19107?');// Do your stuff here
+  $('#color-label').text('Change color');// Do your stuff here
+  $('#text-input1').val('In which neighborhood');
+  $('#text-input2').val('The name');
+  $('#text-input3').val('The address');
+  $('#numeric-input').val('The zipcode');
+  $('#text-input1').prop('disabled', false);
+  $('#text-input2').prop('disabled', false);
+  $('#text-input3').prop('disabled', false);
+  $('#numeric-input').prop('disabled', false);
+  $('#cbox-input1').prop('disabled', false);
+  $('#cbox-input2').prop('disabled', false);
+
+var position={
+  "LAT":39.948895,
+  "LNG":-75.161135,
+  "INFO":"Aki, Japanese Restaurant,1210 Walnut St, Philadelphia, PA 19107 ",
+};
+
+  $( "button" ).click(function() {
+    var data ={
+      title: $('#text-input1').val(),
+      name: $('#text-input2').val(),
+      address: $('#text-input3').val(),
+      zipcode: $('#numeric-input').val()
+  };
+    var Ilovethiscolor= $('#color-input').val();
+    console.log(data);
+  L.circleMarker([position.LAT,position.LNG],{color:Ilovethiscolor}).bindPopup(data.address).addTo(map);
+});
 });
